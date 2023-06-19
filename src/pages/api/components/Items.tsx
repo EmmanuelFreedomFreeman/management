@@ -87,19 +87,26 @@ function Items(props:any) {
   }
 
     useEffect(() => {
-        const temp:any = []
-        props?.datarub.map((value:any,index:number)=>{
-            (value?.data?.idprojet == projetname )? temp.push({id:value?.id,nomdurubrique:value?.data?.nomdurubrique}):''
-        })
-        setRubriquenames(temp)
+        const call = () =>{
+          const temp:any = []
+          props?.datarub.map((value:any,index:number)=>{
+              (value?.data?.idprojet == projetname )? temp.push({id:value?.id,nomdurubrique:value?.data?.nomdurubrique}):''
+          })
+          setRubriquenames(temp)
+        }
+        call()
         
     }, [projetname])
     useEffect(() => {
-        const temp:any = []
-        props?.dataitems.map((value:any,index:number)=>{
-            (value?.data?.idrubrique == rubriquename )? temp.push({id:value?.id,data:value?.data}):''
-        })
-        setitems(temp)
+        const call = () =>{
+          const temp:any = []
+          props?.dataitems.map((value:any,index:number)=>{
+              (value?.data?.idrubrique == rubriquename )? temp.push({id:value?.id,data:value?.data}):''
+          })
+          setitems(temp)
+        }
+
+        call()
       
     }, [rubriquename,button,etat])
     

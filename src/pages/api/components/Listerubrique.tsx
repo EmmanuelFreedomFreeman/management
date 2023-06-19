@@ -18,30 +18,35 @@ function Listerubrique(props:any) {
 });
 
 useEffect(() => {
-  const temp:any = []
-  props?.datarub.map((value:any,index:number)=>{
-      (value?.data?.idprojet == projetname )? temp.push({id:value?.id,nomdurubrique:value?.data?.nomdurubrique}):''
-    })
-  setRubriquenames(temp)
+    const call = () => {
+        const temp:any = []
+        props?.datarub.map((value:any,index:number)=>{
+            (value?.data?.idprojet == projetname )? temp.push({id:value?.id,nomdurubrique:value?.data?.nomdurubrique}):''
+          })
+        setRubriquenames(temp)
+      
+        props?.data.map((value:any,index:number)=>{
+          (value?.id == projetname )? setprojname(value?.data?.nomduprojet):''
+        })
+    }
 
-  props?.data.map((value:any,index:number)=>{
-    (value?.id == projetname )? setprojname(value?.data?.nomduprojet):''
-  })
-
-
+    call()
   
 }, [projetname])
 useEffect(() => {
-  const temp:any = []
-  props?.dataitems.map((value:any,index:number)=>{
-      (value?.data?.idrubrique == rubriquename )? temp.push({id:value?.id,data:value?.data}):''
-  })
-  setitems(temp)
-
-  
-  rubriquenames.map((value:any,index:number)=>{
-    (value?.id == rubriquename )? setrubname(value?.nomdurubrique):'';
-  })
+    const call = () => {
+      const temp:any = []
+      props?.dataitems.map((value:any,index:number)=>{
+          (value?.data?.idrubrique == rubriquename )? temp.push({id:value?.id,data:value?.data}):''
+      })
+      setitems(temp)
+    
+      
+      rubriquenames.map((value:any,index:number)=>{
+        (value?.id == rubriquename )? setrubname(value?.nomdurubrique):'';
+      })
+    }
+    call()
 
 }, [rubriquename])
 

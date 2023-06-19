@@ -24,15 +24,18 @@ function Gridhome(props:any) {
     }
 
     useEffect(() => {
-        let temp:any = []
+        const callit = () =>{
+          let temp:any = []
         
-        props?.data.map((val:any,ind:number)=>{
-            
-            props?.dataitems.map((value:any,index:number)=>{
-                (value?.data?.idprojet == val?.id )? temp.push({nomduprojet:val?.data?.nomduprojet,data:value}):''
+          props?.data.map((val:any)=>{
+              
+              props?.dataitems.map((value:any)=>{
+                  (value?.data?.idprojet == val?.id )? temp.push({nomduprojet:val?.data?.nomduprojet,data:value}):''
+              })
             })
-          })
-          setitems(temp)
+            setitems(temp)
+        }
+        callit()
         
     }, [])
     
@@ -43,7 +46,7 @@ function Gridhome(props:any) {
             <div className={value?.data?.nomduprojet?'ml-4':'hidden'} key={index}>
                 <div className='text-center p-3 bg-slate-200 rounded-md '>
                     <p className='font-bold underline mb-2'>{value?.data?.nomduprojet?.toUpperCase()}</p>
-                    <img className='w-48 rounded-md shadow-md' src='https://innoblog.fr/wp-content/uploads/2021/12/Figure-Blog-1-1.jpg' />
+                    <img className='w-48 rounded-md shadow-md' alt='pic' src='https://innoblog.fr/wp-content/uploads/2021/12/Figure-Blog-1-1.jpg' />
                     <p className='font-bold mt-1 text-center'>TOTALE : {summary(value?.id)}</p>
                 </div>
             </div>

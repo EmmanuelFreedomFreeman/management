@@ -12,23 +12,27 @@ function Listeprojets(props:any) {
     currency: 'USD',
 });
   useEffect(() => {
-    let temp:any = []
-    props?.datarub.map((value:any,index:number)=>{
-        (value?.data?.idprojet == projetname )? temp.push({id:value?.id,nomdurubrique:value?.data?.nomdurubrique,idprojet:value?.data?.idprojet}):''
-      })
-    setRubriquenames(temp)
-    temp = []
-    props?.dataitems.map((value:any,index:number)=>{
-      (value?.data?.idprojet == projetname )? temp.push({id:value?.id,data:value}):''
-    })
+      const call = () => {
+        let temp:any = []
+        props?.datarub.map((value:any,index:number)=>{
+            (value?.data?.idprojet == projetname )? temp.push({id:value?.id,nomdurubrique:value?.data?.nomdurubrique,idprojet:value?.data?.idprojet}):''
+          })
+        setRubriquenames(temp)
+        temp = []
+        props?.dataitems.map((value:any,index:number)=>{
+          (value?.data?.idprojet == projetname )? temp.push({id:value?.id,data:value}):''
+        })
+    
+        let t = 0
+        temp.map((value:any,index:number)=>{
+          t = t + parseFloat(value?.data?.data?.pt) 
+          
+        })
+    
+        settotale(t)
+      }
 
-    let t = 0
-    temp.map((value:any,index:number)=>{
-      t = t + parseFloat(value?.data?.data?.pt) 
-      
-    })
-
-    settotale(t)
+      call()
 
     
   }, [projetname])
@@ -51,7 +55,7 @@ function Listeprojets(props:any) {
                 </div>
 
                 <div>
-                      <img className='max-h-28' src='https://cdn.shopify.com/s/files/1/0249/6376/files/prix_de_vente_1b66cd4d-20fc-4325-a0b3-8283c1542623.jpg?v=1551117622'  />
+                      <img alt='pic' className='max-h-28' src='https://cdn.shopify.com/s/files/1/0249/6376/files/prix_de_vente_1b66cd4d-20fc-4325-a0b3-8283c1542623.jpg?v=1551117622'  />
                       <p className='font-bold underline mt-3'>PRIX TOTALE : {USDollar.format(totale)}</p>
                 </div>
 

@@ -13,33 +13,40 @@ function Gridlisteprojet(props:any) {
         currency: 'USD',
     });
     useEffect(() => {
-        const temp:any = []
-        props?.dataitems.map((value:any,index:number)=>{
-            (value?.data?.idrubrique == props?.rubrique?.id )? temp.push({id:value?.id,data:value}):''
-        })
-        setRubriquenames(temp)
+        const call = () =>{
+          const temp:any = []
+          props?.dataitems.map((value:any,index:number)=>{
+              (value?.data?.idrubrique == props?.rubrique?.id )? temp.push({id:value?.id,data:value}):''
+          })
+          setRubriquenames(temp)
+        }
+
+        call()
         
     }, [])
 
     useEffect(() => {
       
-        let tempor:number = 0
-        rubriquenames.map((value:any,index:number)=>{
-          tempor = tempor + parseFloat(value?.data?.data?.pu) 
-        })
-        setpu(tempor)
-        tempor = 0
-    
-        rubriquenames.map((value:any,index:number)=>{
-          tempor = tempor + parseFloat(value?.data?.data?.pt) 
-        })
-        setpt(tempor)
-        props?.projet.map((value:any,index:number)=>{
-            (props?.rubrique?.idprojet == value?.id )? setProjname(value?.data?.nomduprojet):'';
-            
+        const call = () =>{
+          let tempor:number = 0
+          rubriquenames.map((value:any,index:number)=>{
+            tempor = tempor + parseFloat(value?.data?.data?.pu) 
+          })
+          setpu(tempor)
+          tempor = 0
+      
+          rubriquenames.map((value:any,index:number)=>{
+            tempor = tempor + parseFloat(value?.data?.data?.pt) 
+          })
+          setpt(tempor)
+          props?.projet.map((value:any,index:number)=>{
+              (props?.rubrique?.idprojet == value?.id )? setProjname(value?.data?.nomduprojet):'';
+              
+          }
+              
+          )
         }
-            
-        )
+        call()
         
     }, [rubriquenames])
     
