@@ -9,7 +9,7 @@ function Gridhome(props:any) {
             currency: 'USD',
         });
         let temp:any = []
-        props?.dataitems.map((value:any,index:number)=>{
+        props?.dataitems.map((value:any)=>{
             (value?.data?.idprojet == id )? temp.push({id:value?.id,data:value}):''
           })
       
